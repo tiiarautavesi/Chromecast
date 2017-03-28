@@ -180,6 +180,35 @@ sub {
   font-size: 12px;
   font-family: 'Roboto', "Open Sans", "Verdana", Georgia, Serif;
 }
+/* ADDED EASY CONTROLS */
+#controls-easy-container {
+  display: block;
+  position: relative;
+  top: 1em;
+  left: 3em;
+  margin-bottom: 2em;
+}
+#show-easy {
+  display: inline-block;
+  width: 20%;
+}
+#pause-easy {
+  display: none;
+}
+#controls-easy {
+  position: relative;
+  width: 80%;
+  top: -1em;
+  left: 20%;
+  display: inline-block;
+  display: none;
+}
+.easy {
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+}
+/* END EASY CONTROLS */
 
 #media_control {
   position: absolute;

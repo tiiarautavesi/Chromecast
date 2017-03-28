@@ -103,7 +103,7 @@ CastPlayer.prototype.initializeCastPlayer = function() {
     // Set the receiver application ID to your own (created in the
     // Google Cast Developer Console), or optionally
     // use the chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
-    options.receiverApplicationId = '4F8B3483';
+    options.receiverApplicationId = 'DD09F497';
 
     // Auto join policy can be one of the following three:
     // ORIGIN_SCOPED - Auto connect from same appId and page origin
@@ -185,6 +185,12 @@ var PlayerHandler = function(castPlayer) {
         castPlayer.playerState = PLAYER_STATE.PLAYING;
         document.getElementById('play').style.display = 'none';
         document.getElementById('pause').style.display = 'block';
+
+        // EASY 
+        document.getElementById('play-easy').style.display = 'none';
+        document.getElementById('pause-easy').style.display = 'inline-block';
+        // EASY ends
+
         this.updateDisplayMessage();
     };
 
@@ -197,6 +203,12 @@ var PlayerHandler = function(castPlayer) {
         castPlayer.playerState = PLAYER_STATE.PAUSED;
         document.getElementById('play').style.display = 'block';
         document.getElementById('pause').style.display = 'none';
+
+        // EASY
+        document.getElementById('play-easy').style.display = 'inline-block';
+        document.getElementById('pause-easy').style.display = 'none';
+        //
+
         this.updateDisplayMessage();
     };
 
@@ -252,12 +264,16 @@ var PlayerHandler = function(castPlayer) {
         this.target.mute();
         document.getElementById('audio_on').style.display = 'none';
         document.getElementById('audio_off').style.display = 'block';
+        document.getElementById('audio_on-easy').style.display = 'none';
+        document.getElementById('audio_off-easy').style.display = 'inline-block';
     };
 
     this.unMute = function() {
         this.target.unMute();
         document.getElementById('audio_on').style.display = 'block';
         document.getElementById('audio_off').style.display = 'none';
+         document.getElementById('audio_on-easy').style.display = 'inline-block';
+        document.getElementById('audio_off-easy').style.display = 'none';
     };
 
     this.isMuted = function() {
@@ -323,6 +339,7 @@ CastPlayer.prototype.setupLocalPlayer = function () {
         var p = document.getElementById('audio_bg_level');
         p.style.height = volumeSliderPosition + 'px';
         p.style.marginTop = -volumeSliderPosition + 'px';
+        document.getElementById('audio-volume').value = volumeSliderPosition;
     };
 
     playerTarget.mute = function() {
@@ -594,6 +611,14 @@ CastPlayer.prototype.setVolume = function(mouseEvent) {
     this.playerHandler.setVolume(pos);
 };
 
+
+//EASY VOLUME
+CastPlayer.prototype.setVolumeEasy = function(mouseEvent) {
+    var p = document.getElementById('audio-volume').value;
+    this.playerHandler.setVolume(p);
+};
+//
+
 /**
  * Starts the timer to increment the media progress bar
  */
@@ -667,6 +692,12 @@ CastPlayer.prototype.endPlayback = function() {
 
     document.getElementById('play').style.display = 'block';
     document.getElementById('pause').style.display = 'none';
+
+
+    // EASY
+    document.getElementById('play-easy').style.display = 'inline-block';
+    document.getElementById('pause-easy').style.display = 'none';
+    //
 };
 
 /**
@@ -867,6 +898,21 @@ CastPlayer.prototype.initializeUI = function() {
     document.getElementById('pause').addEventListener(
         'click', this.playerHandler.pause.bind(this.playerHandler));
     document.getElementById('progress_indicator').draggable = true;
+
+
+    //EASY 
+    document.getElementById('fullscreen_expand-easy').addEventListener(
+        'click', this.requestFullScreen.bind(this));
+    document.getElementById('play-easy').addEventListener(
+        'click', this.playerHandler.play.bind(this.playerHandler));
+    document.getElementById('pause-easy').addEventListener(
+        'click', this.playerHandler.pause.bind(this.playerHandler));
+    document.getElementById('audio-volume').addEventListener(
+        'click', this.setVolumeEasy.bind(this));
+    document.getElementById('audio_on-easy').addEventListener(
+        'click', this.playerHandler.mute.bind(this.playerHandler));
+    document.getElementById('audio_off-easy').addEventListener(
+        'click', this.playerHandler.unMute.bind(this.playerHandler));
 };
 
 /**

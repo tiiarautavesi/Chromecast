@@ -58,6 +58,19 @@
            <div id="audio_off"></div>
            <div id="duration">00:00:00</div>
         </div>
+         <div id="controls-easy-container">
+          <div id="show-easy">Easy controls</div>
+          <div id="controls-easy">
+              <div id="play-easy" class="easy">Play</div>
+              <div id="pause-easy" class="easy">Pause</div>
+              <div id="fullscreen_expand-easy" class="easy">Fullscreen</div>
+              <div id="audio_off-easy" class="easy">Enable audio</div>
+              <div id="audio_on-easy" class="easy">Mute</div>
+              <div id="audio-easy" class="easy">
+                <input type="range" name="audio-level" id="audio-volume" value="50" min="0" max="99" step="1">
+              </div>
+          </div>
+        </div>
       </div>
       <div id="media_info">
         <div id="media_title">
@@ -82,5 +95,12 @@
         };
       </script>
       <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+      $( "#show-easy" ).click(function() {
+      $( "#controls-easy" ).toggle( "slow", function() {
+      });
+      });
+      </script>
 </body>
 </html>
