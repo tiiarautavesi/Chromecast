@@ -148,11 +148,10 @@ sub {
   float:left;
   width:940px;
   height:116px;
-    margin-top: 5px;
-    margin-left: 40px;
+  margin-top: 5px;
+  margin-left: 40px;
   padding:10px;
   opacity:0.9;
-  background-color:#DDE0E5;
   color: #000;
 }
 
